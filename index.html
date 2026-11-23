@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,6 +103,11 @@
     .lang-switch{display:flex;gap:.2rem;background:rgba(255,255,255,.65);border:1px solid var(--line);border-radius:999px;padding:.2rem;flex:none}
     .lang-switch button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:.7rem;font-weight:600;letter-spacing:.12em;padding:.34rem .62rem;border-radius:999px;cursor:pointer}
     .lang-switch button.active{background:var(--text);color:#fff}
+    .nav-tools{display:flex;align-items:center;gap:.5rem;flex:none}
+    .theme-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.65);color:var(--text);cursor:pointer;padding:0}
+    .theme-btn .icon-sun{display:none}
+    [data-theme="dark"] .theme-btn .icon-sun{display:block}
+    [data-theme="dark"] .theme-btn .icon-moon{display:none}
     .nav-links{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:flex-end}
     .nav-links a{
       text-decoration:none;
@@ -229,8 +234,8 @@
     .cinta-wrap::before,.cinta-wrap::after{
       content:"";position:absolute;top:0;bottom:0;width:5%;min-width:28px;z-index:3;pointer-events:none;
     }
-    .cinta-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),rgba(239,237,232,0))}
-    .cinta-wrap::after{right:0;background:linear-gradient(-90deg,var(--bg),rgba(239,237,232,0))}
+    .cinta-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+    .cinta-wrap::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
     .cinta{
       overflow:hidden;
       touch-action:pan-y;
@@ -575,7 +580,58 @@
       .kicker,.nav-links a,.btn,.chips span,.type-badge{letter-spacing:.14em}
       .sticky-cta .btn{width:auto}
     }
+    /* ===== TEMA OSCURO ===== */
+    [data-theme="dark"]{
+      --bg:#16130f;
+      --bg-soft:#1e1a15;
+      --panel:#211d17;
+      --text:#f3f0ea;
+      --muted:#aba194;
+      --line:#3a352c;
+      --water:#2a251e;
+      --chip:#2c2721;
+      --shadow:0 18px 45px rgba(0,0,0,.5);
+      color-scheme:dark;
+    }
+    [data-theme="dark"] header{background:rgba(22,19,15,.88);border-bottom-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .brand-mark{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
+    [data-theme="dark"] .lang-switch{background:rgba(255,255,255,.07)}
+    [data-theme="dark"] .lang-switch button.active{color:#16130f}
+    [data-theme="dark"] .theme-btn{background:rgba(255,255,255,.07)}
+    [data-theme="dark"] .nav-cta{background:var(--text);border-color:var(--text);color:#16130f!important}
+    [data-theme="dark"] .btn{border-color:rgba(255,255,255,.45)}
+    [data-theme="dark"] .btn.dark{background:var(--text);border-color:var(--text);color:#16130f}
+    [data-theme="dark"] .btn.light{color:var(--text)}
+    [data-theme="dark"] .surface{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)}
+    [data-theme="dark"] .hero-photo img{border-color:rgba(255,255,255,.1)}
+    [data-theme="dark"] .hero-tag{background:#282219;border-color:rgba(255,255,255,.12)}
+    [data-theme="dark"] .cinta{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)}
+    [data-theme="dark"] .service-card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.09)}
+    [data-theme="dark"] .service-media{background:#29241d}
+    [data-theme="dark"] .service-copy .ideal{color:#d9d3c8}
+    [data-theme="dark"] .type-badge{background:#282219;border-color:rgba(255,255,255,.12)}
+    [data-theme="dark"] .gallery-item{background:#29241d;border-color:rgba(255,255,255,.09)}
+    [data-theme="dark"] .media-banner{background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));border-color:rgba(255,255,255,.09);color:var(--text)}
+    [data-theme="dark"] .price-card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.09)}
+    [data-theme="dark"] .price-card.featured{border-color:var(--text);background:rgba(255,255,255,.1)}
+    [data-theme="dark"] .featured-badge{background:var(--text);color:var(--bg)}
+    [data-theme="dark"] .price-card .price{color:var(--text)}
+    [data-theme="dark"] .price-card .ideal strong{color:#d9d3c8}
+    [data-theme="dark"] .trust-chip{background:rgba(255,255,255,.06)}
+    [data-theme="dark"] .about-copy p{color:#d9d3c8}
+    [data-theme="dark"] .about-visual img{border-color:rgba(255,255,255,.1)}
+    [data-theme="dark"] .about-tag{background:#282219;border-color:rgba(255,255,255,.12)}
+    [data-theme="dark"] .faq-item{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.09)}
+    [data-theme="dark"] .booking-steps li{color:#d9d3c8}
+    [data-theme="dark"] .booking-steps li::before{background:var(--text);color:var(--bg)}
+    [data-theme="dark"] .booking-form input,[data-theme="dark"] .booking-form select,[data-theme="dark"] .booking-form textarea{background:rgba(255,255,255,.06)}
+    [data-theme="dark"] .booking-result{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+    [data-theme="dark"] footer{border-top-color:rgba(255,255,255,.09)}
+    [data-theme="dark"] .sticky-cta{background:rgba(22,19,15,.92);border-top-color:rgba(255,255,255,.09)}
   </style>
+  <script>
+    try { if (localStorage.getItem('yuli-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+  </script>
 </head>
 <body>
   <header>
@@ -595,9 +651,15 @@
         <a href="#negocios">Negocios</a>
         <a class="nav-cta" href="#reservar">Reservar</a>
       </nav>
-      <div class="lang-switch" role="group" aria-label="Language / Idioma">
-        <button type="button" data-lang-btn="es" class="active">ES</button>
-        <button type="button" data-lang-btn="en">EN</button>
+      <div class="nav-tools">
+        <div class="lang-switch" role="group" aria-label="Language / Idioma">
+          <button type="button" data-lang-btn="es" class="active">ES</button>
+          <button type="button" data-lang-btn="en">EN</button>
+        </div>
+        <button type="button" class="theme-btn" id="themeBtn" aria-label="Tema claro u oscuro / Light or dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
       </div>
     </div>
   </header>
@@ -1167,6 +1229,17 @@
         inicial = localStorage.getItem('yuli-lang') || ((navigator.language || 'es').toLowerCase().indexOf('en') === 0 ? 'en' : 'es');
       } catch (e) {}
       aplicar(inicial);
+    })();
+  </script>
+  <script>
+    (function(){
+      var btn = document.getElementById('themeBtn');
+      if (!btn) return;
+      btn.addEventListener('click', function(){
+        var dark = document.documentElement.getAttribute('data-theme') !== 'dark';
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        try { localStorage.setItem('yuli-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      });
     })();
   </script>
 </body>

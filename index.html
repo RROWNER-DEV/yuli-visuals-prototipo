@@ -229,10 +229,8 @@
     .cinta-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),rgba(239,237,232,0))}
     .cinta-wrap::after{right:0;background:linear-gradient(-90deg,var(--bg),rgba(239,237,232,0))}
     .cinta{
-      overflow-x:auto;
-      overflow-y:hidden;
-      scrollbar-width:none;
-      scroll-behavior:auto;
+      overflow:hidden;
+      touch-action:pan-y;
       cursor:grab;
       border-radius:24px;
       border:1px solid rgba(17,17,17,.06);
@@ -244,8 +242,8 @@
       gap:1rem;
       padding:1rem;
       width:max-content;
+      will-change:transform;
     }
-    .cinta::-webkit-scrollbar{display:none}
     .cinta:active{cursor:grabbing}
     .cinta-track img{
       height:290px;
@@ -1001,42 +999,99 @@
   <script>
     (function(){
       var cinta = document.querySelector('.cinta');
-      if (!cinta) return;
-      cinta.querySelectorAll('img').forEach(function(img){ img.draggable = false; });
-      var tocando = false, arrastrando = false, ultimoToque = 0;
-      var startX = 0, startScroll = 0;
-      function mitad(){ return cinta.scrollWidth / 2; }
-      cinta.addEventListener('touchstart', function(){ tocando = true; ultimoToque = Date.now(); }, {passive:true});
-      cinta.addEventListener('touchmove', function(){ ultimoToque = Date.now(); }, {passive:true});
-      cinta.addEventListener('touchend', function(){ tocando = false; ultimoToque = Date.now(); });
-      cinta.addEventListener('wheel', function(){ ultimoToque = Date.now(); }, {passive:true});
-      cinta.addEventListener('mousedown', function(e){ arrastrando = true; startX = e.clientX; startScroll = cinta.scrollLeft; });
-      window.addEventListener('mousemove', function(e){ if (arrastrando){ cinta.scrollLeft = startScroll - (e.clientX - startX); ultimoToque = Date.now(); } });
-      window.addEventListener('mouseup', function(){ if (arrastrando){ arrastrando = false; ultimoToque = Date.now(); } });
-      cinta.addEventListener('scroll', function(){
-        if (tocando || arrastrando) return;
-        var m = mitad();
-        if (m > 0 && cinta.scrollLeft >= m) cinta.scrollLeft -= m;
-        else if (m > 0 && cinta.scrollLeft <= 0) cinta.scrollLeft += m;
-      });
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var track = document.querySelector('.cinta-track');
+      if (!cinta || !track) return;
+      var imgs = track.querySelectorAll('img');
+      imgs.forEach(function(img){ img.draggable = false; });
+
+      var offset = 0;              // posicion de la tira (siempre entre -anchoSerie y 0)
+      var anchoSerie = 0;          // ancho de UNA serie (la pista lleva dos copias)
+      var arrastrando = false;
+      var ultimoX = 0, ultimoT = 0, velocidad = 0;
+      var conImpulso = false;
+      var ultimoToque = 0;
       var fotosListas = false;
-      var pendientes = 0;
-      var imgsCinta = cinta.querySelectorAll('img');
-      imgsCinta.forEach(function(img){ if (!(img.complete && img.naturalWidth > 0)) pendientes++; });
-      if (pendientes === 0) { fotosListas = true; }
-      else {
-        imgsCinta.forEach(function(img){ img.addEventListener('load', function(){ pendientes--; if (pendientes <= 0) fotosListas = true; }); });
-        setTimeout(function(){ fotosListas = true; }, 4000);
+      var reducirMovimiento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function medir(){ anchoSerie = track.scrollWidth / 2; }
+      function normalizar(){
+        if (anchoSerie <= 0) return;
+        while (offset <= -anchoSerie) offset += anchoSerie;
+        while (offset > 0) offset -= anchoSerie;
       }
-      setInterval(function(){
-        if (!fotosListas) return;
-        if (tocando || arrastrando) return;
-        if (Date.now() - ultimoToque < 3000) return;
-        cinta.scrollLeft += 1;
-        var m = mitad();
-        if (m > 0 && cinta.scrollLeft >= m) cinta.scrollLeft -= m;
-      }, 20);
+      function pintar(){
+        normalizar();
+        track.style.transform = 'translateX(' + offset + 'px)';
+      }
+
+      // No mover la cinta hasta que las fotos esten decodificadas
+      var pendientes = 0;
+      function bajo(){
+        pendientes--;
+        medir();
+        if (pendientes <= 0) fotosListas = true;
+      }
+      imgs.forEach(function(img){
+        if (img.complete && img.naturalWidth > 0) {
+          if (img.decode) { pendientes++; img.decode().then(bajo).catch(bajo); }
+        } else {
+          pendientes++;
+          img.addEventListener('load', bajo);
+          img.addEventListener('error', bajo);
+        }
+      });
+      if (pendientes === 0) fotosListas = true;
+      setTimeout(function(){ fotosListas = true; medir(); }, 4000);
+
+      cinta.addEventListener('pointerdown', function(e){
+        arrastrando = true; conImpulso = false;
+        ultimoX = e.clientX; ultimoT = performance.now(); velocidad = 0;
+        ultimoToque = Date.now();
+        try { cinta.setPointerCapture(e.pointerId); } catch (err) {}
+        e.preventDefault();
+      });
+      cinta.addEventListener('pointermove', function(e){
+        if (!arrastrando) return;
+        var ahora = performance.now();
+        var dx = e.clientX - ultimoX;
+        var dt = ahora - ultimoT;
+        if (dt > 0) velocidad = 0.8 * velocidad + 0.2 * (dx / dt);
+        offset += dx;
+        ultimoX = e.clientX; ultimoT = ahora;
+        ultimoToque = Date.now();
+        pintar();
+      });
+      function soltar(){
+        if (!arrastrando) return;
+        arrastrando = false;
+        ultimoToque = Date.now();
+        if (Math.abs(velocidad) > 0.05) conImpulso = true;
+      }
+      cinta.addEventListener('pointerup', soltar);
+      cinta.addEventListener('pointercancel', soltar);
+      cinta.addEventListener('wheel', function(){ ultimoToque = Date.now(); }, {passive:true});
+      window.addEventListener('resize', function(){ medir(); pintar(); });
+
+      var ultimoFrame = performance.now();
+      function bucle(ahora){
+        var dt = Math.min(ahora - ultimoFrame, 50);
+        ultimoFrame = ahora;
+        if (fotosListas && anchoSerie > 0) {
+          if (conImpulso) {
+            offset += velocidad * dt;
+            velocidad *= Math.pow(0.95, dt / 16.7);
+            if (Math.abs(velocidad) < 0.03) { conImpulso = false; ultimoToque = Date.now(); }
+            pintar();
+          } else if (!arrastrando && !reducirMovimiento && Date.now() - ultimoToque > 3000) {
+            offset -= 50 * dt / 1000;   // avance automatico ~50 px/s
+            pintar();
+          }
+        }
+        requestAnimationFrame(bucle);
+      }
+      medir();
+      pintar();
+      requestAnimationFrame(bucle);
     })();
   </script>
 </body>

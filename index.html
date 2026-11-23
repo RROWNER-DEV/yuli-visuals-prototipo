@@ -4,8 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ebe8e2">
-  <meta name="description" content="Yuli Visuals - sitio de reservas para fotos, videos y colaboraciones.">
-  <title>Yuli Visuals | Booking Site</title>
+  <meta name="description" content="Yuli Visuals — Fotografía, video y creación de contenido en Allentown y el Lehigh Valley, PA. Sesiones, bodas, eventos y contenido para negocios. Reserva tu sesión.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yuli Visuals | Your moments, my perspective">
+  <meta property="og:description" content="Fotografía y contenido para tus momentos y tu negocio. Allentown · Lehigh Valley, PA. Reserva tu sesión.">
+  <meta property="og:url" content="https://yuli-visuals-prototipo.vercel.app/">
+  <meta property="og:image" content="https://yuli-visuals-prototipo.vercel.app/assets/photos/boda-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Yuli Visuals | Fotografía y contenido en Allentown, PA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -109,64 +115,6 @@
       background:#111;
       color:#fff!important;
     }
-    .hero{
-      position:relative;
-      min-height:92vh;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      overflow:hidden;
-    }
-    .hero::before{
-      content:"yuli";
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      font-family:'Cormorant Garamond', Georgia, serif;
-      font-size:clamp(9rem, 28vw, 28rem);
-      line-height:.8;
-      color:var(--water);
-      opacity:.75;
-      pointer-events:none;
-      transform:translateY(1rem);
-    }
-    .hero-card{
-      position:relative;
-      z-index:1;
-      width:min(980px,100%);
-      padding:2rem 1rem;
-    }
-    .hero-card .welcome{margin-bottom:5rem}
-    .hero-by{
-      font-family:'Cormorant Garamond', Georgia, serif;
-      font-size:clamp(3rem, 7vw, 6rem);
-      line-height:.86;
-      margin:0;
-      font-weight:500;
-    }
-    .hero-by .tiny{
-      display:block;
-      font-size:clamp(2rem, 4vw, 3.6rem);
-      margin-bottom:.6rem;
-    }
-    .hero-sub{
-      margin:5rem 0 .7rem;
-      font-size:clamp(.9rem,1.3vw,1.05rem);
-      text-transform:uppercase;
-      letter-spacing:.42em;
-      line-height:1.8;
-    }
-    .hero-loc{
-      color:var(--muted);
-      font-size:.9rem;
-      letter-spacing:.25em;
-      text-transform:uppercase;
-    }
-    .hero-actions{
-      margin-top:2.2rem;
-      display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
-    }
     .btn{
       text-decoration:none;
       min-height:48px;
@@ -178,6 +126,9 @@
       letter-spacing:.18em;
       font-size:.77rem;
       transition:transform .2s ease, background .2s ease, color .2s ease;
+      cursor:pointer;
+      background:transparent;
+      font-family:inherit;
     }
     .btn:hover{transform:translateY(-2px)}
     .btn.dark{background:#111;color:#fff}
@@ -188,6 +139,257 @@
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:3.5rem 0 4rem;
+    }
+    .hero::before{
+      content:"yuli";
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(9rem, 28vw, 28rem);
+      line-height:.8;
+      color:var(--water);
+      opacity:.6;
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:2.5rem;
+      align-items:center;
+    }
+    .hero-copy .kicker{margin-bottom:1rem;display:block}
+    .hero-title{
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(2.9rem, 6vw, 5.2rem);
+      line-height:.95;
+      margin:0 0 1.1rem;
+      font-weight:500;
+    }
+    .hero-title em{font-style:italic}
+    .hero-sub{
+      font-size:1.05rem;
+      color:#2b2724;
+      max-width:30rem;
+      margin:0 0 .6rem;
+    }
+    .hero-loc{
+      color:var(--muted);
+      font-size:.85rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      margin:0 0 2rem;
+    }
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+    .hero-photo{position:relative}
+    .hero-photo img{
+      width:100%;
+      aspect-ratio:4/5;
+      object-fit:cover;
+      border-radius:26px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(17,17,17,.08);
+    }
+    .hero-tag{
+      position:absolute;left:1rem;bottom:1rem;
+      display:inline-flex;align-items:center;gap:.45rem;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(17,17,17,.08);
+      border-radius:999px;
+      padding:.55rem .9rem;
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      box-shadow:var(--shadow);
+    }
+    /* ===== CINTA ===== */
+    .cinta-section{padding:0 0 1rem}
+    .cinta-head{
+      display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+      margin-bottom:1.1rem;
+    }
+    .cinta-head h2{
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(1.7rem,3vw,2.4rem);
+      font-weight:500;margin:0;
+    }
+    .cinta-head span{color:var(--muted);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase}
+    .cinta{
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(17,17,17,.06);
+      background:rgba(255,255,255,.35);
+      box-shadow:var(--shadow);
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+    }
+    .cinta-track{
+      display:flex;
+      gap:1rem;
+      padding:1rem;
+      width:max-content;
+      animation:cinta-scroll 55s linear infinite;
+    }
+    .cinta:hover .cinta-track,.cinta:active .cinta-track{animation-play-state:paused}
+    .cinta-track img{
+      height:290px;
+      width:auto;
+      border-radius:16px;
+      object-fit:cover;
+      flex:none;
+    }
+    @keyframes cinta-scroll{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .cinta-track{animation:none}
+      .cinta{overflow-x:auto}
+    }
+    /* ===== SERVICIOS ===== */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1.35rem;
+    }
+    .service-card{
+      background:rgba(255,255,255,.46);
+      border:1px solid rgba(17,17,17,.06);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .service-card.wide{grid-column:1 / -1}
+    .service-media{position:relative;overflow:hidden;background:#e5e0d9}
+    .service-media img{width:100%;aspect-ratio:16/9;object-fit:cover}
+    .service-card.wide .service-media img{aspect-ratio:21/9}
+    .service-copy{padding:1.2rem 1.2rem 1.4rem}
+    .service-copy h3{
+      margin:0 0 .4rem;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:1.9rem;
+      font-weight:600;
+      line-height:1.05;
+    }
+    .service-copy p{margin:0;color:var(--muted);font-size:.95rem}
+    .service-copy .ideal{
+      margin-top:.7rem;color:#2b2724;font-size:.88rem;
+    }
+    .service-copy .ideal strong{text-transform:uppercase;letter-spacing:.14em;font-size:.72rem}
+    .type-badge{
+      display:inline-flex;align-items:center;gap:.45rem;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(17,17,17,.08);
+      border-radius:999px;
+      padding:.55rem .85rem;
+      font-size:.73rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      box-shadow:var(--shadow);
+    }
+    /* ===== GALERÍA ===== */
+    .gallery{columns:3;column-gap:1.35rem}
+    .gallery-item{
+      margin:0 0 1.35rem;position:relative;border-radius:24px;overflow:hidden;
+      box-shadow:var(--shadow);border:1px solid rgba(17,17,17,.06);break-inside:avoid;
+      background:#e5e0d9;
+    }
+    .gallery-item img{width:100%;transition:transform .45s ease}
+    .gallery-item:hover img{transform:scale(1.03)}
+    .gallery-badge{position:absolute;top:.9rem;left:.9rem}
+    .media-banner{
+      margin:1.4rem auto 0;
+      width:min(900px,100%);
+      padding:1rem 1.25rem;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.35));
+      border:1px solid rgba(17,17,17,.06);
+      text-align:center;
+      color:#2f2b27;
+      font-size:.95rem;
+    }
+    /* ===== PAQUETES ===== */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1.25rem;
+    }
+    .price-card{
+      position:relative;
+      padding:1.35rem 1.25rem 1.45rem;
+      border-radius:20px;
+      border:1px solid rgba(17,17,17,.08);
+      background:rgba(255,255,255,.48);
+      box-shadow:var(--shadow);
+      min-height:100%;
+      text-align:center;
+      display:flex;flex-direction:column;
+    }
+    .price-card.featured{
+      border:2px solid #111;
+      background:rgba(255,255,255,.72);
+    }
+    .featured-badge{
+      position:absolute;top:-0.85rem;left:50%;transform:translateX(-50%);
+      background:#111;color:#fff;
+      border-radius:999px;padding:.35rem .9rem;
+      font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;
+      white-space:nowrap;
+    }
+    .price-card h3{
+      margin:0 0 .2rem;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:2rem;
+      line-height:1;
+      font-weight:600;
+    }
+    .price-card .price{
+      margin:0 0 .8rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.75rem;
+    }
+    .price-card ul{
+      margin:.4rem 0 0 1.15rem;
+      padding:0;
+      display:inline-block;
+      text-align:left;
+      color:#24211f;
+    }
+    .price-card li{margin:.45rem 0}
+    .price-card .ideal{
+      margin-top:auto;padding-top:1rem;
+      color:var(--muted);font-size:.85rem;
+    }
+    .price-card .ideal strong{display:block;color:#2b2724;text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;margin-bottom:.2rem}
+    .pricing-note{
+      text-align:center;color:var(--muted);font-size:.9rem;margin-top:1.4rem;
+    }
+    /* ===== NEGOCIOS / CONFIANZA ===== */
+    .trust-strip{
+      display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;
+      margin:0 auto 2.2rem;max-width:900px;
+    }
+    .trust-chip{
+      display:inline-flex;flex-direction:column;align-items:center;
+      padding:.85rem 1.3rem;
+      border:1px solid var(--line);border-radius:18px;
+      background:rgba(255,255,255,.55);
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+    .trust-chip strong{font-family:'Cormorant Garamond', Georgia, serif;font-size:1.25rem;font-weight:600;line-height:1.1}
+    .trust-chip span{color:var(--muted);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase}
+    /* ===== SOBRE MÍ ===== */
     .about-grid{
       display:grid;
       grid-template-columns:1.05fr .95fr;
@@ -216,7 +418,8 @@
       border:1px solid rgba(17,17,17,.08);
       background:var(--bg-soft);
     }
-    .about-tag, .media-pill, .type-badge{
+    .about-tag{
+      position:absolute;right:1rem;bottom:1rem;
       display:inline-flex;align-items:center;gap:.45rem;
       background:#fff;
       border:1px solid rgba(17,17,17,.08);
@@ -227,11 +430,8 @@
       letter-spacing:.16em;
       box-shadow:var(--shadow);
     }
-    .about-tag{
-      position:absolute;right:1rem;bottom:1rem;
-    }
     .chips{
-      display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.25rem;
+      display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem;
     }
     .chips span{
       display:inline-flex;align-items:center;justify-content:center;
@@ -243,139 +443,78 @@
       letter-spacing:.18em;
       font-size:.72rem;
     }
-    .portfolio-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:1.35rem;
-    }
-    .portfolio-card{
-      background:rgba(255,255,255,.46);
-      border:1px solid rgba(17,17,17,.06);
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-    .portfolio-media{
-      position:relative;
-      aspect-ratio:16/10;
-      background:#e5e0d9;
-      overflow:hidden;
-    }
-    .portfolio-media img{
-      width:100%;height:100%;object-fit:cover;
-    }
-    .portfolio-badges{
-      position:absolute;top:1rem;left:1rem;display:flex;flex-wrap:wrap;gap:.5rem;
-    }
-    .type-badge{background:rgba(255,255,255,.94)}
-    .type-badge.video{
-      background:#111;color:#fff;border-color:#111;
-    }
-    .portfolio-copy{padding:1.2rem 1.2rem 1.4rem}
-    .portfolio-copy h3{
-      margin:0 0 .4rem;
-      font-family:'Cormorant Garamond', Georgia, serif;
-      font-size:2rem;
-      font-weight:600;
-    }
-    .portfolio-copy p{margin:0;color:var(--muted);font-size:.95rem}
-    .media-banner{
-      margin:1.4rem auto 0;
-      width:min(900px,100%);
-      padding:1rem 1.25rem;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.35));
-      border:1px solid rgba(17,17,17,.06);
-      text-align:center;
-      color:#2f2b27;
-      font-size:.95rem;
-    }
-    .gallery{columns:3;column-gap:1.35rem}
-    .gallery-item{
-      margin:0 0 1.35rem;position:relative;border-radius:24px;overflow:hidden;
-      box-shadow:var(--shadow);border:1px solid rgba(17,17,17,.06);break-inside:avoid;
-      background:#e5e0d9;
-    }
-    .gallery-item img{width:100%;transition:transform .45s ease}
-    .gallery-item:hover img{transform:scale(1.03)}
-    .gallery-badge{position:absolute;top:.9rem;left:.9rem;background:rgba(255,255,255,.94)}
-    .pricing-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:1.25rem;
-    }
-    .price-card{
-      padding:1.35rem 1.25rem 1.45rem;
-      border-radius:20px;
-      border:1px solid rgba(17,17,17,.08);
-      background:rgba(255,255,255,.48);
-      box-shadow:var(--shadow);
-      min-height:100%;
-      text-align:center;
-    }
-    .price-card h3{
-      margin:0 0 .2rem;
-      font-family:'Cormorant Garamond', Georgia, serif;
-      font-size:2rem;
-      line-height:1;
-      font-weight:600;
-    }
-    .price-card .price{
-      margin:0 0 .8rem;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      font-size:.75rem;
-    }
-    .price-card ul{
-      margin:.4rem 0 0 1.15rem;
-      padding:0;
-      display:inline-block;
-      text-align:left;
-      color:#24211f;
-    }
-    .price-card li{margin:.45rem 0}
-    .dual-preview{
-      margin-top:2rem;
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:1.2rem;
-    }
-    .dual-preview figure{
-      margin:0;
-      border-radius:24px;
-      overflow:hidden;
+    /* ===== FAQ ===== */
+    .faq-list{max-width:820px;margin:0 auto;display:grid;gap:.9rem}
+    .faq-item{
       background:rgba(255,255,255,.5);
-      border:1px solid rgba(17,17,17,.06);
+      border:1px solid rgba(17,17,17,.07);
+      border-radius:18px;
       box-shadow:var(--shadow);
-      position:relative;
+      padding:1rem 1.25rem;
     }
-    .dual-preview img{width:100%;aspect-ratio:16/10;object-fit:cover}
-    .dual-preview figcaption{
-      padding:.95rem 1rem 1.1rem;
-      text-align:center;
-      font-size:.88rem;
-      color:var(--muted);
+    .faq-item summary{
+      cursor:pointer;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:1.45rem;font-weight:600;line-height:1.15;
+      list-style:none;
     }
-    .mini-pills{
-      position:absolute;top:1rem;right:1rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;
-    }
-    .thankyou{
-      display:grid;grid-template-columns:.95fr 1.05fr;gap:2rem;align-items:center;
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:"+";float:right;font-family:'Montserrat',sans-serif;font-weight:300}
+    .faq-item[open ] summary::after{content:"–"}
+    .faq-item p{color:var(--muted);margin:.6rem 0 .2rem;font-size:.95rem}
+    /* ===== RESERVA ===== */
+    .booking-grid{
+      display:grid;grid-template-columns:.95fr 1.05fr;gap:2rem;align-items:start;
       padding:2rem;
     }
-    .thankyou h2{
+    .booking-copy h2{
       font-family:'Cormorant Garamond', Georgia, serif;
-      font-size:clamp(2.8rem,5vw,5rem);
-      line-height:.92;
-      margin:0 0 1rem;
+      font-size:clamp(2.6rem,5vw,4.4rem);
+      line-height:.95;
+      margin:.2rem 0 1rem;
       font-weight:600;
     }
-    .thankyou p{
-      color:var(--muted);font-size:1rem;max-width:30rem;
+    .booking-copy p{color:var(--muted);font-size:1rem;max-width:30rem}
+    .booking-steps{margin:1.2rem 0 0;padding:0;list-style:none;counter-reset:step}
+    .booking-steps li{
+      margin:.7rem 0;color:#2b2724;font-size:.95rem;
+      display:flex;gap:.7rem;align-items:flex-start;
     }
-    .thankyou .contact-list{
-      display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.2rem;
+    .booking-steps li::before{
+      counter-increment:step;content:counter(step);
+      flex:none;width:26px;height:26px;border-radius:50%;
+      background:#111;color:#fff;display:grid;place-items:center;
+      font-size:.8rem;margin-top:.1rem;
+    }
+    .booking-form{display:grid;gap:.9rem}
+    .booking-form label{
+      display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-bottom:.35rem;
+    }
+    .booking-form input,.booking-form select,.booking-form textarea{
+      width:100%;
+      padding:.85rem 1rem;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.75);
+      font-family:inherit;font-size:.95rem;color:var(--text);
+    }
+    .booking-form textarea{resize:vertical}
+    .booking-result{
+      display:none;
+      border:1px dashed rgba(17,17,17,.3);
+      border-radius:16px;
+      padding:1rem;
+      background:rgba(255,255,255,.6);
+    }
+    .booking-result.open{display:block}
+    .booking-result p{margin:0 0 .5rem;font-size:.85rem;color:var(--muted)}
+    .booking-result textarea{
+      width:100%;border:none;background:transparent;resize:none;
+      font-family:inherit;font-size:.95rem;color:var(--text);
+    }
+    .booking-result .result-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.6rem}
+    .contact-list{
+      display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.4rem;
     }
     footer{
       padding:1.4rem 0 2rem;
@@ -388,26 +527,38 @@
       display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
       padding-top:1rem;border-top:1px solid rgba(17,17,17,.08)
     }
+    /* ===== BARRA FIJA MÓVIL ===== */
+    .sticky-cta{
+      display:none;
+      position:fixed;left:0;right:0;bottom:0;z-index:30;
+      padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+      background:rgba(239,237,232,.92);
+      backdrop-filter:blur(10px);
+      border-top:1px solid rgba(17,17,17,.08);
+      gap:.7rem;
+    }
+    .sticky-cta .btn{flex:1}
     @media (max-width: 980px){
-      .about-grid,.thankyou,.portfolio-grid,.dual-preview,.pricing-grid{grid-template-columns:1fr}
+      .about-grid,.booking-grid,.services-grid,.pricing-grid,.hero-grid{grid-template-columns:1fr}
       .gallery{columns:2}
       .nav-links{display:none}
-      .hero{min-height:auto;padding:5rem 0 4rem}
-      .hero-sub{letter-spacing:.26em}
-      .hero-loc{letter-spacing:.18em}
       .section{padding:3.25rem 0}
-      .about-grid,.thankyou{padding:1.25rem}
+      .about-grid,.booking-grid{padding:1.25rem}
+      .hero{padding:2.5rem 0 3rem}
+      .hero-photo img{aspect-ratio:16/11}
+      .sticky-cta{display:flex}
+      body{padding-bottom:76px}
     }
     @media (max-width: 620px){
       .container{width:min(var(--max),calc(100% - 1.2rem))}
-      .hero-card .welcome{margin-bottom:3rem}
-      .hero-sub{margin-top:3rem;font-size:.82rem}
-      .hero-actions,.contact-list{flex-direction:column;align-items:stretch}
       .btn{width:100%}
+      .hero-actions,.contact-list{flex-direction:column;align-items:stretch}
       .section-head h2{font-size:2.55rem}
-      .portfolio-copy h3,.price-card h3{font-size:1.8rem}
+      .service-copy h3,.price-card h3{font-size:1.8rem}
       .gallery{columns:1}
-      .kicker,.nav-links a,.btn,.chips span,.type-badge,.media-pill{letter-spacing:.14em}
+      .cinta-track img{height:230px}
+      .kicker,.nav-links a,.btn,.chips span,.type-badge{letter-spacing:.14em}
+      .sticky-cta .btn{width:auto}
     }
   </style>
 </head>
@@ -422,47 +573,61 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="#about">Sobre mí</a>
         <a href="#servicios">Servicios</a>
         <a href="#portafolio">Portafolio</a>
-        <a href="#paquetes">Combos</a>
+        <a href="#paquetes">Paquetes</a>
         <a href="#negocios">Negocios</a>
-        <a class="nav-cta" href="#contacto">Reservar</a>
+        <a href="#about">Sobre mí</a>
+        <a class="nav-cta" href="#reservar">Reservar</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero" id="inicio">
-      <div class="container hero-card">
-        <div class="welcome kicker">Welcome to my booking site</div>
-        <h1 class="hero-by serif"><span class="tiny">BY</span>Yuli Reyes</h1>
-        <p class="hero-sub">Photos | Videos &amp; Colaboraciones</p>
-        <p class="hero-loc">📍 Located in Pennsylvania, Allentown.</p>
-        <div class="hero-actions">
-          <a href="#servicios" class="btn dark">Ver servicios</a>
-          <a href="#contacto" class="btn light">Reservar por DM</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="kicker">Yuli Visuals · Fotografía y contenido</span>
+          <h1 class="hero-title">Your moments,<br><em>my perspective.</em></h1>
+          <p class="hero-sub">Fotografía y video para tus momentos y tu negocio: sesiones personales, bodas, eventos y contenido que hace lucir tu marca.</p>
+          <p class="hero-loc">📍 Allentown · Lehigh Valley, Pennsylvania</p>
+          <div class="hero-actions">
+            <a href="#reservar" class="btn dark">Reservar tu sesión</a>
+            <a href="#portafolio" class="btn light">Ver trabajos</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/photos/boda-1.jpg" alt="Pareja de novios besándose con ramo de calas, fotografiada por Yuli Visuals.">
+          <span class="hero-tag">Bodas · Sesiones · Eventos</span>
         </div>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container surface about-grid">
-        <div class="about-copy">
-          <div class="kicker">Conoce a Yuli</div>
-          <h2>HI, I’M YULI! 📸</h2>
-          <p>Soy la persona detrás de <strong>Yuli Visuals</strong>. Para mí, la fotografía y la creación de contenido son formas de contar historias, capturar momentos y hacer que una idea cobre vida.</p>
-          <p>Me encanta crear contenido natural, auténtico y visualmente atractivo, tanto para personas como para negocios y marcas que quieren mostrar lo que hacen de una manera diferente.</p>
-          <div class="chips" aria-label="Especialidades">
-            <span>Fotografía</span>
-            <span>Video</span>
-            <span>Contenido UGC</span>
-            <span>Colaboraciones</span>
-          </div>
+    <section class="cinta-section" id="recientes" aria-label="Trabajos recientes">
+      <div class="container">
+        <div class="cinta-head">
+          <h2>Trabajos recientes</h2>
+          <span>Lo último de Yuli</span>
         </div>
-        <div class="about-visual">
-          <img src="assets/screens/about.png" alt="Vista previa de la sección de presentación de Yuli Visuals.">
-          <span class="about-tag">Estilo editorial · minimal</span>
+        <div class="cinta">
+          <div class="cinta-track">
+            <img src="assets/photos/restaurante-2.jpg" alt="Cóctel artesanal y tacos: contenido para restaurante.">
+            <img src="assets/photos/bar-1.jpg" alt="Bartender sirviendo un cóctel desde la coctelera.">
+            <img src="assets/photos/cumple-1.jpg" alt="Sesión de cumpleaños 21 con pastel rosa.">
+            <img src="assets/photos/rosa-blanca-3.jpg" alt="Manos sosteniendo una bebida de Rosa Blanca.">
+            <img src="assets/photos/social-2.jpg" alt="Dos amigas brindando con cócteles de noche.">
+            <img src="assets/photos/cocteles-1.jpg" alt="Cuatro cócteles de colores sobre mesa de mármol.">
+            <img src="assets/photos/eventos-1.jpg" alt="Banda en vivo tocando en un restaurante.">
+            <img src="assets/photos/lifestyle-1.jpg" alt="Retrato nocturno con copa de martini.">
+            <img src="assets/photos/restaurante-2.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/bar-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cumple-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/rosa-blanca-3.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/social-2.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cocteles-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/eventos-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/lifestyle-1.jpg" alt="" aria-hidden="true">
+          </div>
         </div>
       </div>
     </section>
@@ -470,24 +635,46 @@
     <section class="section" id="servicios">
       <div class="container">
         <div class="section-head">
-          <div class="kicker">Servicios destacados</div>
-          <h2>Los servicios más requeridos</h2>
-          <p class="section-note">Contenido natural, auténtico y con estilo editorial para personas, negocios y marcas: sesiones personales, restaurantes, eventos y colaboraciones.</p>
+          <div class="kicker">Servicios</div>
+          <h2>¿Qué puedo crear para ti?</h2>
+          <p class="section-note">Contenido natural, auténtico y con estilo editorial. Tú disfruta el momento, que yo me encargo de capturarlo.</p>
         </div>
-        <div class="portfolio-card">
-          <div class="portfolio-media">
-            <img src="assets/photos/restaurante-2.jpg" alt="Contenido para restaurante fotografiado por Yuli Visuals: cóctel artesanal y tacos.">
-            <div class="portfolio-badges">
-              <span class="type-badge">Aire libre</span>
-              <span class="type-badge">Restaurantes</span>
-              <span class="type-badge">Bebés/Niños</span>
-              <span class="type-badge">Personales</span>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-copy">
+              <h3>Sesiones personales y cumpleaños</h3>
+              <p>Retratos con un estilo limpio y editorial para celebrar tu momento: cumpleaños, graduaciones o simplemente porque sí.</p>
+              <p class="ideal"><strong>Ideal para</strong><br>Cumpleaños · Graduación · Marca personal</p>
             </div>
-          </div>
-          <div class="portfolio-copy">
-            <h3>Sesiones más solicitadas</h3>
-            <p>Las sesiones más pedidas por clientes y negocios, organizadas de forma clara y visual.</p>
-          </div>
+          </article>
+          <article class="service-card">
+            <div class="service-copy">
+              <h3>Bodas y parejas</h3>
+              <p>Momentos reales contados con luz natural: las risas, los detalles y las miradas que hacen único tu día.</p>
+              <p class="ideal"><strong>Ideal para</strong><br>Bodas · Compromisos · Aniversarios</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-copy">
+              <h3>Bebés y maternidad</h3>
+              <p>Sesiones llenas de amor y conexión para guardar para siempre la magia de esperar — y de recibir — a tu bebé.</p>
+              <p class="ideal"><strong>Ideal para</strong><br>Embarazo · Recién nacidos · Primeros meses</p>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-copy">
+              <h3>Eventos</h3>
+              <p>Cobertura completa de tu evento para que ningún momento especial se escape: ambiente, invitados y cada detalle.</p>
+              <p class="ideal"><strong>Ideal para</strong><br>Fiestas · Celebraciones · Eventos sociales</p>
+            </div>
+          </article>
+          <article class="service-card wide">
+            <div class="service-copy">
+              <h3>Contenido para negocios</h3>
+              <p>Fotografía y reels que hacen lucir tu negocio: platillos, cócteles, ambiente y equipo, listos para publicar en Instagram y TikTok. Una imagen pensada para resaltar la esencia y la personalidad de tu marca.</p>
+              <p class="ideal"><strong>Ideal para</strong><br>Restaurantes · Bares · Marcas locales</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -500,19 +687,18 @@
           <p class="section-note">Una muestra del trabajo real de Yuli: restaurantes, bodas, eventos, sesiones personales y contenido para marcas. Esta galería crece con cada cliente nuevo.</p>
         </div>
         <div class="gallery" aria-label="Galería de trabajos de Yuli Visuals">
-          <figure class="gallery-item"><img loading="lazy" src="assets/photos/restaurante-2.jpg" alt="Cóctel artesanal y tacos: contenido para restaurante."><span class="type-badge gallery-badge">Restaurantes</span></figure>
-          <figure class="gallery-item"><img loading="lazy" src="assets/photos/boda-1.jpg" alt="Pareja de novios besándose con ramo de calas."><span class="type-badge gallery-badge">Bodas</span></figure>
-          <figure class="gallery-item"><img loading="lazy" src="assets/photos/bar-1.jpg" alt="Bartender sirviendo un cóctel: contenido para bares."><span class="type-badge gallery-badge">Negocios</span></figure>
-          <figure class="gallery-item"><img loading="lazy" src="assets/photos/cumple-1.jpg" alt="Sesión de cumpleaños 21 con pastel rosa."><span class="type-badge gallery-badge">Sesiones</span></figure>
-          <figure class="gallery-item"><img loading="lazy" src="assets/photos/cocteles-1.jpg" alt="Cuatro cócteles de colores sobre mesa de mármol."><span class="type-badge gallery-badge">Negocios</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/boda-2.jpg" alt="Pareja de novios bajando una escalera el día de su boda."><span class="type-badge gallery-badge">Bodas</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/brunch-1.jpg" alt="Mesa de brunch en terraza con mimosa, pancakes y steak and eggs."><span class="type-badge gallery-badge">Restaurantes</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/bar-3.jpg" alt="Copa de margarita sobre la barra de un bar."><span class="type-badge gallery-badge">Negocios</span></figure>
           <figure class="gallery-item"><img loading="lazy" src="assets/photos/social-1.jpg" alt="Brindis con disfraces de fantasma frente a Rosa Blanca."><span class="type-badge gallery-badge">Contenido social</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/rosa-blanca-2.jpg" alt="Dos clientas disfrutando en una mesa de Rosa Blanca."><span class="type-badge gallery-badge">Negocios</span></figure>
           <figure class="gallery-item"><img loading="lazy" src="assets/photos/restaurante-1.jpg" alt="Nachos, taquitos y cócteles: contenido para restaurante."><span class="type-badge gallery-badge">Restaurantes</span></figure>
-          <figure class="gallery-item"><img loading="lazy" src="assets/photos/lifestyle-1.jpg" alt="Retrato nocturno con copa de martini."><span class="type-badge gallery-badge">Sesiones</span></figure>
-          <figure class="gallery-item"><img loading="lazy" src="assets/photos/rosa-blanca-1.jpg" alt="Bebidas de Rosa Blanca listas para redes sociales."><span class="type-badge gallery-badge">Negocios</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/social-3.jpg" alt="Dos chicas con una bebida en la calle, contenido social."><span class="type-badge gallery-badge">Contenido social</span></figure>
           <figure class="gallery-item"><img loading="lazy" src="assets/photos/bar-2.jpg" alt="Cóctel ámbar en vaso rocks sobre la barra."><span class="type-badge gallery-badge">Negocios</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/rosa-blanca-1.jpg" alt="Bebidas de Rosa Blanca listas para redes sociales."><span class="type-badge gallery-badge">Negocios</span></figure>
         </div>
         <div class="media-banner">
-          ¿Te gusta lo que ves? <strong>Reserva tu sesión por DM</strong> — también creamos <strong>videos y reels</strong> para Instagram y TikTok.
+          ¿Te gusta lo que ves? <a href="#reservar"><strong>Reserva tu sesión</strong></a> — también creamos <strong>videos y reels</strong> para Instagram y TikTok.
         </div>
       </div>
     </section>
@@ -521,73 +707,70 @@
       <div class="container">
         <div class="section-head">
           <div class="kicker">Paquetes</div>
-          <h2>Combos</h2>
+          <h2>Sesiones y combos</h2>
+          <p class="section-note">Elige el paquete que va con tu momento. Todos incluyen fotos editadas con el estilo editorial de Yuli Visuals.</p>
         </div>
         <div class="pricing-grid">
           <article class="price-card">
             <h3>Mini Session</h3>
-            <p class="price">$DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>30 minutos</li>
               <li>8–10 fotos editadas</li>
               <li>1 persona</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Una sesión rápida y personal</p>
           </article>
           <article class="price-card">
             <h3>Portrait Session</h3>
-            <p class="price">$DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>1 hora</li>
               <li>15–20 fotos editadas</li>
               <li>1–2 outfits</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Cumpleaños y sesiones personales</p>
           </article>
           <article class="price-card">
             <h3>Couples Session</h3>
-            <p class="price">$DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>1 hora</li>
               <li>20–25 fotos editadas</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Parejas y compromisos</p>
           </article>
           <article class="price-card">
             <h3>Family Session</h3>
-            <p class="price">$DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>1 hora</li>
               <li>25–30 fotos editadas</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Familias y bebés</p>
           </article>
           <article class="price-card">
             <h3>Video Profesional</h3>
-            <p class="price">$DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>1 hora</li>
               <li>Video editado</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Reels de Instagram y TikTok</p>
           </article>
-          <article class="price-card">
+          <article class="price-card featured">
+            <span class="featured-badge">Destacado</span>
             <h3>Eventos</h3>
-            <p class="price">DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>2 horas</li>
               <li>40 fotos editadas</li>
               <li>2 videos cortos</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Fiestas y celebraciones</p>
           </article>
         </div>
-        <div class="dual-preview" aria-label="Vista previa visual de las secciones de combos y agradecimiento">
-          <figure>
-            <img src="assets/photos/cumple-1.jpg" alt="Sesión de cumpleaños fotografiada por Yuli Visuals.">
-            <div class="mini-pills"><span class="media-pill">Sesiones</span></div>
-            <figcaption>Sesiones personales y de cumpleaños con un estilo limpio y editorial.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/photos/boda-1.jpg" alt="Sesión de pareja y boda fotografiada por Yuli Visuals.">
-            <div class="mini-pills"><span class="media-pill">Parejas</span></div>
-            <figcaption>Parejas y bodas: momentos reales contados con luz natural.</figcaption>
-          </figure>
-        </div>
+        <p class="pricing-note">Estamos actualizando nuestros precios. Mientras tanto, pide tu cotización al reservar — sin compromiso.</p>
       </div>
     </section>
 
@@ -595,77 +778,208 @@
       <div class="container">
         <div class="section-head">
           <div class="kicker">Contenido para marcas</div>
-          <h2>Creación de contenidos para negocios</h2>
-          <p class="section-note">Paquetes de contenido para comercios y marcas: fotos y videos listos para publicar, con un estilo editorial que hace lucir tu negocio.</p>
+          <h2>Creación de contenido para negocios</h2>
+          <p class="section-note">Fotos y videos listos para publicar, con un estilo editorial que hace lucir tu negocio. Estos negocios de la zona ya crean su contenido con Yuli:</p>
+        </div>
+        <div class="trust-strip" aria-label="Negocios que trabajan con Yuli Visuals">
+          <div class="trust-chip"><strong>Rosa Blanca</strong><span>Allentown · @rosablanca.allentown</span></div>
+          <div class="trust-chip"><strong>Amigos Mexican Grill</strong><span>Allentown · @amigosallentown</span></div>
+          <div class="trust-chip"><strong>Amigos Mexican Grill</strong><span>Easton · @amigoseaston</span></div>
+          <div class="trust-chip"><strong>Zen Easton</strong><span>Easton · @zen.easton</span></div>
         </div>
         <div class="pricing-grid">
           <article class="price-card">
             <h3>Mini Content</h3>
-            <p class="price">$DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>1 hora</li>
               <li>2 videos cortos</li>
               <li>4 fotos editadas</li>
               <li>Material para reels / TikTok</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Negocios empezando en redes</p>
           </article>
           <article class="price-card">
             <h3>Business Content</h3>
-            <p class="price">$DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>2 horas</li>
               <li>5 videos / 15 fotos editadas</li>
               <li>Contenido pensado para Instagram / TikTok</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Restaurantes y bares</p>
           </article>
-          <article class="price-card">
+          <article class="price-card featured">
+            <span class="featured-badge">Destacado</span>
             <h3>Monthly Content</h3>
-            <p class="price">Desde $DM</p>
+            <p class="price">Cotizar por DM</p>
             <ul>
               <li>1–2 sesiones al mes</li>
               <li>Contenido para varias semanas</li>
               <li>Precio personalizado según lo que necesite el negocio</li>
             </ul>
+            <p class="ideal"><strong>Ideal para</strong>Redes activas todo el mes</p>
           </article>
         </div>
-        <div class="dual-preview" aria-label="Vista previa de contenido para negocios">
-          <figure>
-            <img src="assets/photos/bar-1.jpg" alt="Bartender preparando un cóctel: contenido para negocios creado por Yuli Visuals.">
-            <div class="mini-pills"><span class="media-pill">Negocios</span><span class="media-pill">IG / TikTok</span></div>
-            <figcaption>Contenido pensado para que cada negocio se vea profesional y apetecible en redes.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/photos/rosa-blanca-1.jpg" alt="Bebidas de un restaurante local fotografiadas por Yuli Visuals.">
-            <div class="mini-pills"><span class="media-pill">Restaurantes</span></div>
-            <figcaption>Marcas locales de la zona de Allentown ya confían su contenido a Yuli.</figcaption>
-          </figure>
+        <p class="pricing-note">¿Tu negocio necesita contenido constante? El plan mensual es la forma más fácil de mantener tus redes activas sin preocuparte por crear contenido.</p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container surface about-grid">
+        <div class="about-copy">
+          <div class="kicker">Conoce a Yuli</div>
+          <h2>HI, I’M YULI! 📸</h2>
+          <p>Soy la persona detrás de <strong>Yuli Visuals</strong>. Para mí, la fotografía y la creación de contenido son formas de contar historias, capturar momentos y hacer que una idea cobre vida.</p>
+          <p>Me encanta crear contenido natural, auténtico y visualmente atractivo, tanto para personas como para negocios y marcas que quieren mostrar lo que hacen de una manera diferente.</p>
+          <p><em>“Tú disfruta el momento, que yo me encargo de capturarlo.”</em></p>
+          <div class="chips" aria-label="Especialidades">
+            <span>Fotografía</span>
+            <span>Video</span>
+            <span>Contenido UGC</span>
+            <span>Colaboraciones</span>
+          </div>
+        </div>
+        <div class="about-visual">
+          <img src="assets/screens/about.png" alt="Presentación de Yuli Reyes, creadora de Yuli Visuals.">
+          <span class="about-tag">Estilo editorial · minimal</span>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contacto">
-      <div class="container surface thankyou">
-        <div>
-          <img src="assets/photos/social-1.jpg" alt="Clientes brindando durante una sesión de contenido con Yuli Visuals.">
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Preguntas frecuentes</div>
+          <h2>Antes de reservar</h2>
         </div>
-        <div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>¿Cómo reservo mi sesión?</summary>
+            <p>Completa el formulario de reserva de esta página o escríbele a Yuli por Instagram. Tu mensaje llega listo con el tipo de sesión y tu fecha — ella te confirma disponibilidad y los detalles por DM.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿En qué áreas trabajas?</summary>
+            <p>En Allentown y todo el Lehigh Valley, Pennsylvania. Para eventos fuera de la zona, escríbele y lo coordinan.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Qué tipo de sesiones haces?</summary>
+            <p>Sesiones personales y de cumpleaños, bodas y parejas, familia, bebés y maternidad, y cobertura de eventos. También crea contenido (foto y video) para negocios y marcas.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿También grabas video?</summary>
+            <p>Sí. Además de fotografía, crea videos cortos y reels listos para Instagram y TikTok — personales y para negocios.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Con cuánta anticipación debo reservar?</summary>
+            <p>Entre más pronto, mejor para asegurar tu fecha — especialmente en fines de semana. Escríbele con tu fecha tentativa y te confirma disponibilidad.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reservar">
+      <div class="container surface booking-grid">
+        <div class="booking-copy">
           <div class="kicker">Reserva y contacto</div>
-          <h2>¡Gracias por reservar!</h2>
-          <p>Etiquétanos para aparecer en nuestra página y escríbenos por DM para coordinar tu sesión, colaboración o creación de contenido para negocio.</p>
+          <h2>Reserva tu sesión</h2>
+          <p>Cuéntanos qué quieres crear y te armamos el mensaje listo para enviar. Yuli te confirma fecha y detalles por Instagram.</p>
+          <ol class="booking-steps">
+            <li>Completa el formulario con tu tipo de sesión y fecha tentativa.</li>
+            <li>Toca “Armar mi mensaje” y cópialo.</li>
+            <li>Abre Instagram, pégalo en su DM y envíalo. ¡Listo!</li>
+          </ol>
           <div class="contact-list">
-            <a class="btn dark" href="https://www.instagram.com/yulivisual" target="_blank" rel="noopener">Reservar por DM</a>
-            <a class="btn light" href="https://www.instagram.com/yulivisual" target="_blank" rel="noopener">Instagram: @yulivisual</a>
+            <a class="btn dark" href="https://ig.me/m/yulivisuals" target="_blank" rel="noopener">Escribir por DM</a>
+            <a class="btn light" href="https://www.instagram.com/yulivisuals" target="_blank" rel="noopener">Instagram: @yulivisuals</a>
           </div>
         </div>
+        <form class="booking-form" id="bookingForm">
+          <div>
+            <label for="bk-name">Tu nombre</label>
+            <input id="bk-name" name="nombre" type="text" placeholder="Ej. María" autocomplete="name">
+          </div>
+          <div>
+            <label for="bk-type">Tipo de sesión</label>
+            <select id="bk-type" name="tipo">
+              <option>Sesión personal / cumpleaños</option>
+              <option>Boda</option>
+              <option>Pareja</option>
+              <option>Familia</option>
+              <option>Bebés / maternidad</option>
+              <option>Evento</option>
+              <option>Contenido para mi negocio</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div>
+            <label for="bk-date">Fecha tentativa</label>
+            <input id="bk-date" name="fecha" type="date">
+          </div>
+          <div>
+            <label for="bk-msg">Cuéntanos tu idea (opcional)</label>
+            <textarea id="bk-msg" name="mensaje" rows="3" placeholder="Lugar, ocasión, qué tienes en mente…"></textarea>
+          </div>
+          <button class="btn dark" type="submit">Armar mi mensaje</button>
+          <div class="booking-result" id="bookingResult">
+            <p>Tu mensaje está listo. Cópialo y pégalo en el DM de Yuli:</p>
+            <textarea id="bookingText" rows="4" readonly></textarea>
+            <div class="result-actions">
+              <button class="btn light" type="button" id="copyBtn">Copiar mensaje</button>
+              <a class="btn dark" href="https://ig.me/m/yulivisuals" target="_blank" rel="noopener">Abrir Instagram</a>
+            </div>
+          </div>
+        </form>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container foot">
-      <span>Yuli Visuals · Photos, Videos &amp; Colaboraciones</span>
-      <span>Allentown, Pennsylvania</span>
+      <span>Yuli Visuals · Your moments, my perspective</span>
+      <span>Allentown, Pennsylvania · @yulivisuals</span>
     </div>
   </footer>
+
+  <div class="sticky-cta">
+    <a class="btn dark" href="#reservar">Reservar tu sesión</a>
+    <a class="btn light" href="https://www.instagram.com/yulivisuals" target="_blank" rel="noopener">Instagram</a>
+  </div>
+
+  <script>
+    (function(){
+      var form = document.getElementById('bookingForm');
+      var result = document.getElementById('bookingResult');
+      var text = document.getElementById('bookingText');
+      var copyBtn = document.getElementById('copyBtn');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var nombre = document.getElementById('bk-name').value.trim();
+        var tipo = document.getElementById('bk-type').value;
+        var fecha = document.getElementById('bk-date').value;
+        var msg = document.getElementById('bk-msg').value.trim();
+        var lineas = [];
+        lineas.push('Hola Yuli' + (nombre ? ', soy ' + nombre : '') + '.');
+        lineas.push('Quiero información para reservar: ' + tipo + '.');
+        if (fecha) {
+          var partes = fecha.split('-');
+          lineas.push('Fecha tentativa: ' + partes[1] + '/' + partes[2] + '/' + partes[0] + '.');
+        }
+        if (msg) lineas.push(msg);
+        text.value = lineas.join('\n');
+        result.classList.add('open');
+        result.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+      copyBtn.addEventListener('click', function(){
+        text.select();
+        var done = function(){ copyBtn.textContent = '¡Copiado!'; setTimeout(function(){ copyBtn.textContent = 'Copiar mensaje'; }, 2000); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text.value).then(done, function(){ document.execCommand('copy'); done(); });
+        } else {
+          document.execCommand('copy'); done();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

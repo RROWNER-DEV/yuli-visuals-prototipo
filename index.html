@@ -223,7 +223,10 @@
     }
     .cinta-head span{color:var(--muted);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase}
     .cinta{
-      overflow:hidden;
+      overflow-x:auto;
+      overflow-y:hidden;
+      scrollbar-width:none;
+      cursor:grab;
       border-radius:24px;
       border:1px solid rgba(17,17,17,.06);
       background:rgba(255,255,255,.35);
@@ -236,23 +239,17 @@
       gap:1rem;
       padding:1rem;
       width:max-content;
-      animation:cinta-scroll 55s linear infinite;
     }
-    .cinta:hover .cinta-track,.cinta:active .cinta-track{animation-play-state:paused}
+    .cinta::-webkit-scrollbar{display:none}
+    .cinta:active{cursor:grabbing}
     .cinta-track img{
       height:290px;
       width:auto;
       border-radius:16px;
       object-fit:cover;
       flex:none;
-    }
-    @keyframes cinta-scroll{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
-    }
-    @media (prefers-reduced-motion: reduce){
-      .cinta-track{animation:none}
-      .cinta{overflow-x:auto}
+      user-select:none;
+      -webkit-user-drag:none;
     }
     /* ===== SERVICIOS ===== */
     .services-grid{
@@ -430,6 +427,13 @@
       letter-spacing:.16em;
       box-shadow:var(--shadow);
     }
+    .about-visual img.about-photo{
+      border-radius:50%;
+      aspect-ratio:1;
+      object-fit:cover;
+      max-width:430px;
+      margin-inline:auto;
+    }
     .chips{
       display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem;
     }
@@ -531,13 +535,13 @@
     .sticky-cta{
       display:none;
       position:fixed;left:0;right:0;bottom:0;z-index:30;
-      padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+      padding:.55rem .7rem calc(.55rem + env(safe-area-inset-bottom));
       background:rgba(239,237,232,.92);
       backdrop-filter:blur(10px);
       border-top:1px solid rgba(17,17,17,.08);
       gap:.7rem;
     }
-    .sticky-cta .btn{flex:1}
+    .sticky-cta .btn{flex:1;min-height:46px;padding:.55rem .7rem;font-size:.7rem;letter-spacing:.1em;white-space:nowrap}
     @media (max-width: 980px){
       .about-grid,.booking-grid,.services-grid,.pricing-grid,.hero-grid{grid-template-columns:1fr}
       .gallery{columns:2}
@@ -547,7 +551,7 @@
       .hero{padding:2.5rem 0 3rem}
       .hero-photo img{aspect-ratio:16/11}
       .sticky-cta{display:flex}
-      body{padding-bottom:76px}
+      body{padding-bottom:70px}
     }
     @media (max-width: 620px){
       .container{width:min(var(--max),calc(100% - 1.2rem))}
@@ -573,11 +577,11 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#about">Sobre mí</a>
         <a href="#servicios">Servicios</a>
         <a href="#portafolio">Portafolio</a>
         <a href="#paquetes">Paquetes</a>
         <a href="#negocios">Negocios</a>
-        <a href="#about">Sobre mí</a>
         <a class="nav-cta" href="#reservar">Reservar</a>
       </nav>
     </div>
@@ -628,6 +632,28 @@
             <img src="assets/photos/eventos-1.jpg" alt="" aria-hidden="true">
             <img src="assets/photos/lifestyle-1.jpg" alt="" aria-hidden="true">
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container surface about-grid">
+        <div class="about-copy">
+          <div class="kicker">Conoce a Yuli</div>
+          <h2>HI, I’M YULI! 📸</h2>
+          <p>Soy la persona detrás de <strong>Yuli Visuals</strong>. Para mí, la fotografía y la creación de contenido son formas de contar historias, capturar momentos y hacer que una idea cobre vida.</p>
+          <p>Me encanta crear contenido natural, auténtico y visualmente atractivo, tanto para personas como para negocios y marcas que quieren mostrar lo que hacen de una manera diferente.</p>
+          <p><em>“Tú disfruta el momento, que yo me encargo de capturarlo.”</em></p>
+          <div class="chips" aria-label="Especialidades">
+            <span>Fotografía</span>
+            <span>Video</span>
+            <span>Contenido UGC</span>
+            <span>Colaboraciones</span>
+          </div>
+        </div>
+        <div class="about-visual">
+          <img class="about-photo" src="assets/photos/yuli-1.jpg" alt="Yuli Reyes con su cámara y su tableta.">
+          <span class="about-tag">Estilo editorial · minimal</span>
         </div>
       </div>
     </section>
@@ -825,27 +851,6 @@
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container surface about-grid">
-        <div class="about-copy">
-          <div class="kicker">Conoce a Yuli</div>
-          <h2>HI, I’M YULI! 📸</h2>
-          <p>Soy la persona detrás de <strong>Yuli Visuals</strong>. Para mí, la fotografía y la creación de contenido son formas de contar historias, capturar momentos y hacer que una idea cobre vida.</p>
-          <p>Me encanta crear contenido natural, auténtico y visualmente atractivo, tanto para personas como para negocios y marcas que quieren mostrar lo que hacen de una manera diferente.</p>
-          <p><em>“Tú disfruta el momento, que yo me encargo de capturarlo.”</em></p>
-          <div class="chips" aria-label="Especialidades">
-            <span>Fotografía</span>
-            <span>Video</span>
-            <span>Contenido UGC</span>
-            <span>Colaboraciones</span>
-          </div>
-        </div>
-        <div class="about-visual">
-          <img src="assets/screens/about.png" alt="Presentación de Yuli Reyes, creadora de Yuli Visuals.">
-          <span class="about-tag">Estilo editorial · minimal</span>
-        </div>
-      </div>
-    </section>
 
     <section class="section" id="faq">
       <div class="container">
@@ -979,6 +984,37 @@
           document.execCommand('copy'); done();
         }
       });
+    })();
+  </script>
+  <script>
+    (function(){
+      var cinta = document.querySelector('.cinta');
+      if (!cinta) return;
+      cinta.querySelectorAll('img').forEach(function(img){ img.draggable = false; });
+      var tocando = false, arrastrando = false, ultimoToque = 0;
+      var startX = 0, startScroll = 0;
+      function mitad(){ return cinta.scrollWidth / 2; }
+      cinta.addEventListener('touchstart', function(){ tocando = true; ultimoToque = Date.now(); }, {passive:true});
+      cinta.addEventListener('touchmove', function(){ ultimoToque = Date.now(); }, {passive:true});
+      cinta.addEventListener('touchend', function(){ tocando = false; ultimoToque = Date.now(); });
+      cinta.addEventListener('wheel', function(){ ultimoToque = Date.now(); }, {passive:true});
+      cinta.addEventListener('mousedown', function(e){ arrastrando = true; startX = e.clientX; startScroll = cinta.scrollLeft; });
+      window.addEventListener('mousemove', function(e){ if (arrastrando){ cinta.scrollLeft = startScroll - (e.clientX - startX); ultimoToque = Date.now(); } });
+      window.addEventListener('mouseup', function(){ if (arrastrando){ arrastrando = false; ultimoToque = Date.now(); } });
+      cinta.addEventListener('scroll', function(){
+        if (tocando || arrastrando) return;
+        var m = mitad();
+        if (m > 0 && cinta.scrollLeft >= m) cinta.scrollLeft -= m;
+        else if (m > 0 && cinta.scrollLeft <= 0) cinta.scrollLeft += m;
+      });
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      setInterval(function(){
+        if (tocando || arrastrando) return;
+        if (Date.now() - ultimoToque < 3000) return;
+        cinta.scrollLeft += 1;
+        var m = mitad();
+        if (m > 0 && cinta.scrollLeft >= m) cinta.scrollLeft -= m;
+      }, 20);
     })();
   </script>
 </body>

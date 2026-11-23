@@ -290,6 +290,15 @@
       color:#2f2b27;
       font-size:.95rem;
     }
+    .gallery{columns:3;column-gap:1.35rem}
+    .gallery-item{
+      margin:0 0 1.35rem;position:relative;border-radius:24px;overflow:hidden;
+      box-shadow:var(--shadow);border:1px solid rgba(17,17,17,.06);break-inside:avoid;
+      background:#e5e0d9;
+    }
+    .gallery-item img{width:100%;transition:transform .45s ease}
+    .gallery-item:hover img{transform:scale(1.03)}
+    .gallery-badge{position:absolute;top:.9rem;left:.9rem;background:rgba(255,255,255,.94)}
     .pricing-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -381,6 +390,7 @@
     }
     @media (max-width: 980px){
       .about-grid,.thankyou,.portfolio-grid,.dual-preview,.pricing-grid{grid-template-columns:1fr}
+      .gallery{columns:2}
       .nav-links{display:none}
       .hero{min-height:auto;padding:5rem 0 4rem}
       .hero-sub{letter-spacing:.26em}
@@ -396,6 +406,7 @@
       .btn{width:100%}
       .section-head h2{font-size:2.55rem}
       .portfolio-copy h3,.price-card h3{font-size:1.8rem}
+      .gallery{columns:1}
       .kicker,.nav-links a,.btn,.chips span,.type-badge,.media-pill{letter-spacing:.14em}
     }
   </style>
@@ -461,11 +472,11 @@
         <div class="section-head">
           <div class="kicker">Servicios destacados</div>
           <h2>Los servicios más requeridos</h2>
-          <p class="section-note">Inspirado directamente en tu diseño: misma vibra limpia, elegante y enfocada en mostrar el contenido de forma simple, delicada y profesional.</p>
+          <p class="section-note">Contenido natural, auténtico y con estilo editorial para personas, negocios y marcas: sesiones personales, restaurantes, eventos y colaboraciones.</p>
         </div>
         <div class="portfolio-card">
           <div class="portfolio-media">
-            <img src="assets/screens/services.png" alt="Vista previa con los servicios: aire libre, restaurantes, bebés y niños, y sesiones personales.">
+            <img src="assets/photos/restaurante-2.jpg" alt="Contenido para restaurante fotografiado por Yuli Visuals: cóctel artesanal y tacos.">
             <div class="portfolio-badges">
               <span class="type-badge">Aire libre</span>
               <span class="type-badge">Restaurantes</span>
@@ -475,7 +486,7 @@
           </div>
           <div class="portfolio-copy">
             <h3>Sesiones más solicitadas</h3>
-            <p>Una sección estilo catálogo que organiza tus servicios principales de manera clara y visual, manteniendo el look editorial del Canva.</p>
+            <p>Las sesiones más pedidas por clientes y negocios, organizadas de forma clara y visual.</p>
           </div>
         </div>
       </div>
@@ -486,38 +497,22 @@
         <div class="section-head">
           <div class="kicker">Portafolio</div>
           <h2>Creación de contenido</h2>
-          <p class="section-note">Aquí dejé bien claro algo importante: <strong>muchas de las miniaturas representan videos / reels</strong>. O sea, aunque se vean como “fotos”, varias piezas son en realidad clips de video o capturas de reels.</p>
+          <p class="section-note">Una muestra del trabajo real de Yuli: restaurantes, bodas, eventos, sesiones personales y contenido para marcas. Esta galería crece con cada cliente nuevo.</p>
         </div>
-        <div class="portfolio-grid">
-          <article class="portfolio-card">
-            <div class="portfolio-media">
-              <img src="assets/screens/content1.png" alt="Galería de creación de contenido para negocios y espacios.">
-              <div class="portfolio-badges">
-                <span class="type-badge">Foto</span>
-                <span class="type-badge video">Video / Reel</span>
-              </div>
-            </div>
-            <div class="portfolio-copy">
-              <h3>Contenido para espacios y marcas</h3>
-              <p>Ideal para mostrar restaurantes, locales, interiores, fachadas, experiencias y piezas promocionales con mezcla de foto y video.</p>
-            </div>
-          </article>
-          <article class="portfolio-card">
-            <div class="portfolio-media">
-              <img src="assets/screens/content2.png" alt="Galería de creación de contenido con personas, comida y negocios.">
-              <div class="portfolio-badges">
-                <span class="type-badge">Foto</span>
-                <span class="type-badge video">Video / Reel</span>
-              </div>
-            </div>
-            <div class="portfolio-copy">
-              <h3>Contenido lifestyle y social</h3>
-              <p>Perfecto para piezas dinámicas pensadas para Instagram o TikTok, donde una sola miniatura puede representar un video completo.</p>
-            </div>
-          </article>
+        <div class="gallery" aria-label="Galería de trabajos de Yuli Visuals">
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/restaurante-2.jpg" alt="Cóctel artesanal y tacos: contenido para restaurante."><span class="type-badge gallery-badge">Restaurantes</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/boda-1.jpg" alt="Pareja de novios besándose con ramo de calas."><span class="type-badge gallery-badge">Bodas</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/bar-1.jpg" alt="Bartender sirviendo un cóctel: contenido para bares."><span class="type-badge gallery-badge">Negocios</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/cumple-1.jpg" alt="Sesión de cumpleaños 21 con pastel rosa."><span class="type-badge gallery-badge">Sesiones</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/cocteles-1.jpg" alt="Cuatro cócteles de colores sobre mesa de mármol."><span class="type-badge gallery-badge">Negocios</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/social-1.jpg" alt="Brindis con disfraces de fantasma frente a Rosa Blanca."><span class="type-badge gallery-badge">Contenido social</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/restaurante-1.jpg" alt="Nachos, taquitos y cócteles: contenido para restaurante."><span class="type-badge gallery-badge">Restaurantes</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/lifestyle-1.jpg" alt="Retrato nocturno con copa de martini."><span class="type-badge gallery-badge">Sesiones</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/rosa-blanca-1.jpg" alt="Bebidas de Rosa Blanca listas para redes sociales."><span class="type-badge gallery-badge">Negocios</span></figure>
+          <figure class="gallery-item"><img loading="lazy" src="assets/photos/bar-2.jpg" alt="Cóctel ámbar en vaso rocks sobre la barra."><span class="type-badge gallery-badge">Negocios</span></figure>
         </div>
         <div class="media-banner">
-          <strong>Importante:</strong> para evitar confusión, la web recalca que varias “fotos” de muestra son en realidad <strong>videos, reels o capturas de contenido audiovisual</strong>.
+          ¿Te gusta lo que ves? <strong>Reserva tu sesión por DM</strong> — también creamos <strong>videos y reels</strong> para Instagram y TikTok.
         </div>
       </div>
     </section>
@@ -583,14 +578,14 @@
         </div>
         <div class="dual-preview" aria-label="Vista previa visual de las secciones de combos y agradecimiento">
           <figure>
-            <img src="assets/screens/combos.png" alt="Vista inspiracional del diseño original de combos.">
-            <div class="mini-pills"><span class="media-pill">Misma estética</span></div>
-            <figcaption>Sección de combos con estructura limpia, elegante y fácil de escanear.</figcaption>
+            <img src="assets/photos/cumple-1.jpg" alt="Sesión de cumpleaños fotografiada por Yuli Visuals.">
+            <div class="mini-pills"><span class="media-pill">Sesiones</span></div>
+            <figcaption>Sesiones personales y de cumpleaños con un estilo limpio y editorial.</figcaption>
           </figure>
           <figure>
-            <img src="assets/screens/thanks.png" alt="Vista final del diseño con mensaje de agradecimiento y reserva.">
-            <div class="mini-pills"><span class="media-pill">Cierre / CTA</span></div>
-            <figcaption>Cierre con agradecimiento, llamado a reservar y presencia visual de Instagram.</figcaption>
+            <img src="assets/photos/boda-1.jpg" alt="Sesión de pareja y boda fotografiada por Yuli Visuals.">
+            <div class="mini-pills"><span class="media-pill">Parejas</span></div>
+            <figcaption>Parejas y bodas: momentos reales contados con luz natural.</figcaption>
           </figure>
         </div>
       </div>
@@ -601,7 +596,7 @@
         <div class="section-head">
           <div class="kicker">Contenido para marcas</div>
           <h2>Creación de contenidos para negocios</h2>
-          <p class="section-note">Mantuve tu idea de paquetes para negocios con un estilo editorial y muy ordenado, ideal para una marca personal que también trabaja con comercios.</p>
+          <p class="section-note">Paquetes de contenido para comercios y marcas: fotos y videos listos para publicar, con un estilo editorial que hace lucir tu negocio.</p>
         </div>
         <div class="pricing-grid">
           <article class="price-card">
@@ -635,14 +630,14 @@
         </div>
         <div class="dual-preview" aria-label="Vista previa de contenido para negocios">
           <figure>
-            <img src="assets/screens/business.png" alt="Vista inspiracional de la sección de creación de contenidos para negocios.">
+            <img src="assets/photos/bar-1.jpg" alt="Bartender preparando un cóctel: contenido para negocios creado por Yuli Visuals.">
             <div class="mini-pills"><span class="media-pill">Negocios</span><span class="media-pill">IG / TikTok</span></div>
-            <figcaption>El formato mantiene el aire editorial del diseño y comunica de forma clara las opciones para marcas.</figcaption>
+            <figcaption>Contenido pensado para que cada negocio se vea profesional y apetecible en redes.</figcaption>
           </figure>
           <figure>
-            <img src="assets/screens/hero.png" alt="Vista de la portada del diseño Yuli Reyes booking site.">
-            <div class="mini-pills"><span class="media-pill">Portada</span></div>
-            <figcaption>Portada de entrada con tipografía serif fina, mucho espacio en blanco y una identidad visual limpia.</figcaption>
+            <img src="assets/photos/rosa-blanca-1.jpg" alt="Bebidas de un restaurante local fotografiadas por Yuli Visuals.">
+            <div class="mini-pills"><span class="media-pill">Restaurantes</span></div>
+            <figcaption>Marcas locales de la zona de Allentown ya confían su contenido a Yuli.</figcaption>
           </figure>
         </div>
       </div>
@@ -651,15 +646,15 @@
     <section class="section" id="contacto">
       <div class="container surface thankyou">
         <div>
-          <img src="assets/screens/thanks.png" alt="Vista previa del cierre del diseño con tarjetas de estilo Instagram.">
+          <img src="assets/photos/social-1.jpg" alt="Clientes brindando durante una sesión de contenido con Yuli Visuals.">
         </div>
         <div>
           <div class="kicker">Reserva y contacto</div>
           <h2>¡Gracias por reservar!</h2>
           <p>Etiquétanos para aparecer en nuestra página y escríbenos por DM para coordinar tu sesión, colaboración o creación de contenido para negocio.</p>
           <div class="contact-list">
-            <a class="btn dark" href="#">Reservar por DM</a>
-            <a class="btn light" href="#">Instagram: @yulivisual</a>
+            <a class="btn dark" href="https://www.instagram.com/yulivisual" target="_blank" rel="noopener">Reservar por DM</a>
+            <a class="btn light" href="https://www.instagram.com/yulivisual" target="_blank" rel="noopener">Instagram: @yulivisual</a>
           </div>
         </div>
       </div>
@@ -669,7 +664,7 @@
   <footer>
     <div class="container foot">
       <span>Yuli Visuals · Photos, Videos &amp; Colaboraciones</span>
-      <span>Diseño web inspirado en tu Canva original</span>
+      <span>Allentown, Pennsylvania</span>
     </div>
   </footer>
 </body>

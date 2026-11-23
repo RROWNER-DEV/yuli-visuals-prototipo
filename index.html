@@ -222,17 +222,22 @@
       font-weight:500;margin:0;
     }
     .cinta-head span{color:var(--muted);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase}
+    .cinta-wrap{position:relative}
+    .cinta-wrap::before,.cinta-wrap::after{
+      content:"";position:absolute;top:0;bottom:0;width:5%;min-width:28px;z-index:3;pointer-events:none;
+    }
+    .cinta-wrap::before{left:0;background:linear-gradient(90deg,var(--bg),rgba(239,237,232,0))}
+    .cinta-wrap::after{right:0;background:linear-gradient(-90deg,var(--bg),rgba(239,237,232,0))}
     .cinta{
       overflow-x:auto;
       overflow-y:hidden;
       scrollbar-width:none;
+      scroll-behavior:auto;
       cursor:grab;
       border-radius:24px;
       border:1px solid rgba(17,17,17,.06);
       background:rgba(255,255,255,.35);
       box-shadow:var(--shadow);
-      -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
-      mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
     }
     .cinta-track{
       display:flex;
@@ -417,6 +422,11 @@
     }
     .about-tag{
       position:absolute;right:1rem;bottom:1rem;
+      font-family:"Cormorant Garamond",serif;
+      font-style:italic;
+      font-size:1.15rem;
+      letter-spacing:.02em;
+      text-transform:none;
       display:inline-flex;align-items:center;gap:.45rem;
       background:#fff;
       border:1px solid rgba(17,17,17,.08);
@@ -613,25 +623,27 @@
           <h2>Trabajos recientes</h2>
           <span>Lo último de Yuli</span>
         </div>
+        <div class="cinta-wrap">
         <div class="cinta">
           <div class="cinta-track">
-            <img src="assets/photos/restaurante-2.jpg" alt="Cóctel artesanal y tacos: contenido para restaurante.">
-            <img src="assets/photos/bar-1.jpg" alt="Bartender sirviendo un cóctel desde la coctelera.">
-            <img src="assets/photos/cumple-1.jpg" alt="Sesión de cumpleaños 21 con pastel rosa.">
-            <img src="assets/photos/rosa-blanca-3.jpg" alt="Manos sosteniendo una bebida de Rosa Blanca.">
-            <img src="assets/photos/social-2.jpg" alt="Dos amigas brindando con cócteles de noche.">
-            <img src="assets/photos/cocteles-1.jpg" alt="Cuatro cócteles de colores sobre mesa de mármol.">
-            <img src="assets/photos/eventos-1.jpg" alt="Banda en vivo tocando en un restaurante.">
-            <img src="assets/photos/lifestyle-1.jpg" alt="Retrato nocturno con copa de martini.">
-            <img src="assets/photos/restaurante-2.jpg" alt="" aria-hidden="true">
-            <img src="assets/photos/bar-1.jpg" alt="" aria-hidden="true">
-            <img src="assets/photos/cumple-1.jpg" alt="" aria-hidden="true">
-            <img src="assets/photos/rosa-blanca-3.jpg" alt="" aria-hidden="true">
-            <img src="assets/photos/social-2.jpg" alt="" aria-hidden="true">
-            <img src="assets/photos/cocteles-1.jpg" alt="" aria-hidden="true">
-            <img src="assets/photos/eventos-1.jpg" alt="" aria-hidden="true">
-            <img src="assets/photos/lifestyle-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-restaurante-2.jpg" alt="Cóctel artesanal y tacos: contenido para restaurante.">
+            <img src="assets/photos/cinta-bar-1.jpg" alt="Bartender sirviendo un cóctel desde la coctelera.">
+            <img src="assets/photos/cinta-cumple-1.jpg" alt="Sesión de cumpleaños 21 con pastel rosa.">
+            <img src="assets/photos/cinta-rosa-blanca-3.jpg" alt="Manos sosteniendo una bebida de Rosa Blanca.">
+            <img src="assets/photos/cinta-social-2.jpg" alt="Dos amigas brindando con cócteles de noche.">
+            <img src="assets/photos/cinta-cocteles-1.jpg" alt="Cuatro cócteles de colores sobre mesa de mármol.">
+            <img src="assets/photos/cinta-eventos-1.jpg" alt="Banda en vivo tocando en un restaurante.">
+            <img src="assets/photos/cinta-lifestyle-1.jpg" alt="Retrato nocturno con copa de martini.">
+            <img src="assets/photos/cinta-restaurante-2.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-bar-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-cumple-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-rosa-blanca-3.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-social-2.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-cocteles-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-eventos-1.jpg" alt="" aria-hidden="true">
+            <img src="assets/photos/cinta-lifestyle-1.jpg" alt="" aria-hidden="true">
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -653,7 +665,7 @@
         </div>
         <div class="about-visual">
           <img class="about-photo" src="assets/photos/yuli-1.jpg" alt="Yuli Reyes con su cámara y su tableta.">
-          <span class="about-tag">Estilo editorial · minimal</span>
+          <span class="about-tag">Yuli Reyes</span>
         </div>
       </div>
     </section>
@@ -1008,7 +1020,17 @@
         else if (m > 0 && cinta.scrollLeft <= 0) cinta.scrollLeft += m;
       });
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var fotosListas = false;
+      var pendientes = 0;
+      var imgsCinta = cinta.querySelectorAll('img');
+      imgsCinta.forEach(function(img){ if (!(img.complete && img.naturalWidth > 0)) pendientes++; });
+      if (pendientes === 0) { fotosListas = true; }
+      else {
+        imgsCinta.forEach(function(img){ img.addEventListener('load', function(){ pendientes--; if (pendientes <= 0) fotosListas = true; }); });
+        setTimeout(function(){ fotosListas = true; }, 4000);
+      }
       setInterval(function(){
+        if (!fotosListas) return;
         if (tocando || arrastrando) return;
         if (Date.now() - ultimoToque < 3000) return;
         cinta.scrollLeft += 1;

@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ebe8e2">
+  <meta name="description" content="Yuli Visuals - sitio de reservas para fotos, videos y colaboraciones.">
+  <title>Yuli Visuals | Booking Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#efede8;
+      --bg-soft:#f6f4f0;
+      --panel:#f2efea;
+      --text:#111111;
+      --muted:#5f5a55;
+      --line:#ddd7cf;
+      --water:#e2dfd9;
+      --chip:#eae5df;
+      --shadow:0 18px 45px rgba(17,17,17,.08);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Montserrat',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    .container{width:min(var(--max),calc(100% - 2rem));margin-inline:auto}
+    .serif{font-family:'Cormorant Garamond', Georgia, serif}
+    .kicker{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.44em;
+      color:var(--muted);
+    }
+    .section{padding:4.2rem 0}
+    .section-head{margin-bottom:2rem;text-align:center}
+    .section-head h2{
+      margin:.35rem 0 0;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(2.2rem, 5vw, 4.2rem);
+      font-weight:500;
+      line-height:1;
+    }
+    .section-note{
+      max-width:760px;
+      margin:1rem auto 0;
+      color:var(--muted);
+      font-size:.98rem;
+    }
+    header{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter: blur(10px);
+      background:rgba(239,237,232,.88);
+      border-bottom:1px solid rgba(17,17,17,.06);
+    }
+    .nav{
+      min-height:74px;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    }
+    .brand{
+      text-decoration:none;
+      display:flex;align-items:center;gap:.75rem;
+    }
+    .brand-mark{
+      width:40px;height:40px;border-radius:50%;
+      border:1px solid var(--line);
+      display:grid;place-items:center;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:1.35rem;
+      background:rgba(255,255,255,.5);
+    }
+    .brand-copy small{
+      display:block;
+      font-size:.7rem;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .brand-copy strong{
+      display:block;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:1.5rem;
+      line-height:1;
+      font-weight:500;
+    }
+    .nav-links{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:flex-end}
+    .nav-links a{
+      text-decoration:none;
+      font-size:.76rem;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      color:#222;
+    }
+    .nav-cta{
+      padding:.85rem 1.15rem;
+      border-radius:999px;
+      border:1px solid #111;
+      background:#111;
+      color:#fff!important;
+    }
+    .hero{
+      position:relative;
+      min-height:92vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"yuli";
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(9rem, 28vw, 28rem);
+      line-height:.8;
+      color:var(--water);
+      opacity:.75;
+      pointer-events:none;
+      transform:translateY(1rem);
+    }
+    .hero-card{
+      position:relative;
+      z-index:1;
+      width:min(980px,100%);
+      padding:2rem 1rem;
+    }
+    .hero-card .welcome{margin-bottom:5rem}
+    .hero-by{
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(3rem, 7vw, 6rem);
+      line-height:.86;
+      margin:0;
+      font-weight:500;
+    }
+    .hero-by .tiny{
+      display:block;
+      font-size:clamp(2rem, 4vw, 3.6rem);
+      margin-bottom:.6rem;
+    }
+    .hero-sub{
+      margin:5rem 0 .7rem;
+      font-size:clamp(.9rem,1.3vw,1.05rem);
+      text-transform:uppercase;
+      letter-spacing:.42em;
+      line-height:1.8;
+    }
+    .hero-loc{
+      color:var(--muted);
+      font-size:.9rem;
+      letter-spacing:.25em;
+      text-transform:uppercase;
+    }
+    .hero-actions{
+      margin-top:2.2rem;
+      display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+    }
+    .btn{
+      text-decoration:none;
+      min-height:48px;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.95rem 1.35rem;
+      border-radius:999px;
+      border:1px solid #111;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.77rem;
+      transition:transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.dark{background:#111;color:#fff}
+    .btn.light{background:transparent;color:#111}
+    .surface{
+      background:rgba(255,255,255,.38);
+      border:1px solid rgba(17,17,17,.06);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:2.2rem;
+      align-items:center;
+      padding:2rem;
+    }
+    .about-copy h2{
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(2.5rem, 4vw, 4rem);
+      line-height:.95;
+      margin:.2rem 0 1.3rem;
+      font-weight:600;
+    }
+    .about-copy p{
+      font-size:1.02rem;
+      max-width:38rem;
+      margin:.95rem 0;
+      color:#282522;
+    }
+    .about-visual{position:relative}
+    .about-visual img{
+      width:100%;
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(17,17,17,.08);
+      background:var(--bg-soft);
+    }
+    .about-tag, .media-pill, .type-badge{
+      display:inline-flex;align-items:center;gap:.45rem;
+      background:#fff;
+      border:1px solid rgba(17,17,17,.08);
+      border-radius:999px;
+      padding:.55rem .85rem;
+      font-size:.73rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      box-shadow:var(--shadow);
+    }
+    .about-tag{
+      position:absolute;right:1rem;bottom:1rem;
+    }
+    .chips{
+      display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.25rem;
+    }
+    .chips span{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.8rem 1rem;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:var(--chip);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+    }
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1.35rem;
+    }
+    .portfolio-card{
+      background:rgba(255,255,255,.46);
+      border:1px solid rgba(17,17,17,.06);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .portfolio-media{
+      position:relative;
+      aspect-ratio:16/10;
+      background:#e5e0d9;
+      overflow:hidden;
+    }
+    .portfolio-media img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .portfolio-badges{
+      position:absolute;top:1rem;left:1rem;display:flex;flex-wrap:wrap;gap:.5rem;
+    }
+    .type-badge{background:rgba(255,255,255,.94)}
+    .type-badge.video{
+      background:#111;color:#fff;border-color:#111;
+    }
+    .portfolio-copy{padding:1.2rem 1.2rem 1.4rem}
+    .portfolio-copy h3{
+      margin:0 0 .4rem;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:2rem;
+      font-weight:600;
+    }
+    .portfolio-copy p{margin:0;color:var(--muted);font-size:.95rem}
+    .media-banner{
+      margin:1.4rem auto 0;
+      width:min(900px,100%);
+      padding:1rem 1.25rem;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.35));
+      border:1px solid rgba(17,17,17,.06);
+      text-align:center;
+      color:#2f2b27;
+      font-size:.95rem;
+    }
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1.25rem;
+    }
+    .price-card{
+      padding:1.35rem 1.25rem 1.45rem;
+      border-radius:20px;
+      border:1px solid rgba(17,17,17,.08);
+      background:rgba(255,255,255,.48);
+      box-shadow:var(--shadow);
+      min-height:100%;
+      text-align:center;
+    }
+    .price-card h3{
+      margin:0 0 .2rem;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:2rem;
+      line-height:1;
+      font-weight:600;
+    }
+    .price-card .price{
+      margin:0 0 .8rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.75rem;
+    }
+    .price-card ul{
+      margin:.4rem 0 0 1.15rem;
+      padding:0;
+      display:inline-block;
+      text-align:left;
+      color:#24211f;
+    }
+    .price-card li{margin:.45rem 0}
+    .dual-preview{
+      margin-top:2rem;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1.2rem;
+    }
+    .dual-preview figure{
+      margin:0;
+      border-radius:24px;
+      overflow:hidden;
+      background:rgba(255,255,255,.5);
+      border:1px solid rgba(17,17,17,.06);
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+    .dual-preview img{width:100%;aspect-ratio:16/10;object-fit:cover}
+    .dual-preview figcaption{
+      padding:.95rem 1rem 1.1rem;
+      text-align:center;
+      font-size:.88rem;
+      color:var(--muted);
+    }
+    .mini-pills{
+      position:absolute;top:1rem;right:1rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;
+    }
+    .thankyou{
+      display:grid;grid-template-columns:.95fr 1.05fr;gap:2rem;align-items:center;
+      padding:2rem;
+    }
+    .thankyou h2{
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:clamp(2.8rem,5vw,5rem);
+      line-height:.92;
+      margin:0 0 1rem;
+      font-weight:600;
+    }
+    .thankyou p{
+      color:var(--muted);font-size:1rem;max-width:30rem;
+    }
+    .thankyou .contact-list{
+      display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.2rem;
+    }
+    footer{
+      padding:1.4rem 0 2rem;
+      color:var(--muted);
+      font-size:.82rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+    }
+    .foot{
+      display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+      padding-top:1rem;border-top:1px solid rgba(17,17,17,.08)
+    }
+    @media (max-width: 980px){
+      .about-grid,.thankyou,.portfolio-grid,.dual-preview,.pricing-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .hero{min-height:auto;padding:5rem 0 4rem}
+      .hero-sub{letter-spacing:.26em}
+      .hero-loc{letter-spacing:.18em}
+      .section{padding:3.25rem 0}
+      .about-grid,.thankyou{padding:1.25rem}
+    }
+    @media (max-width: 620px){
+      .container{width:min(var(--max),calc(100% - 1.2rem))}
+      .hero-card .welcome{margin-bottom:3rem}
+      .hero-sub{margin-top:3rem;font-size:.82rem}
+      .hero-actions,.contact-list{flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+      .section-head h2{font-size:2.55rem}
+      .portfolio-copy h3,.price-card h3{font-size:1.8rem}
+      .kicker,.nav-links a,.btn,.chips span,.type-badge,.media-pill{letter-spacing:.14em}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">Y</span>
+        <span class="brand-copy">
+          <small>Booking Site</small>
+          <strong>Yuli Visuals</strong>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#about">Sobre mí</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#paquetes">Combos</a>
+        <a href="#negocios">Negocios</a>
+        <a class="nav-cta" href="#contacto">Reservar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-card">
+        <div class="welcome kicker">Welcome to my booking site</div>
+        <h1 class="hero-by serif"><span class="tiny">BY</span>Yuli Reyes</h1>
+        <p class="hero-sub">Photos | Videos &amp; Colaboraciones</p>
+        <p class="hero-loc">📍 Located in Pennsylvania, Allentown.</p>
+        <div class="hero-actions">
+          <a href="#servicios" class="btn dark">Ver servicios</a>
+          <a href="#contacto" class="btn light">Reservar por DM</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container surface about-grid">
+        <div class="about-copy">
+          <div class="kicker">Conoce a Yuli</div>
+          <h2>HI, I’M YULI! 📸</h2>
+          <p>Soy la persona detrás de <strong>Yuli Visuals</strong>. Para mí, la fotografía y la creación de contenido son formas de contar historias, capturar momentos y hacer que una idea cobre vida.</p>
+          <p>Me encanta crear contenido natural, auténtico y visualmente atractivo, tanto para personas como para negocios y marcas que quieren mostrar lo que hacen de una manera diferente.</p>
+          <div class="chips" aria-label="Especialidades">
+            <span>Fotografía</span>
+            <span>Video</span>
+            <span>Contenido UGC</span>
+            <span>Colaboraciones</span>
+          </div>
+        </div>
+        <div class="about-visual">
+          <img src="assets/screens/about.png" alt="Vista previa de la sección de presentación de Yuli Visuals.">
+          <span class="about-tag">Estilo editorial · minimal</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Servicios destacados</div>
+          <h2>Los servicios más requeridos</h2>
+          <p class="section-note">Inspirado directamente en tu diseño: misma vibra limpia, elegante y enfocada en mostrar el contenido de forma simple, delicada y profesional.</p>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-media">
+            <img src="assets/screens/services.png" alt="Vista previa con los servicios: aire libre, restaurantes, bebés y niños, y sesiones personales.">
+            <div class="portfolio-badges">
+              <span class="type-badge">Aire libre</span>
+              <span class="type-badge">Restaurantes</span>
+              <span class="type-badge">Bebés/Niños</span>
+              <span class="type-badge">Personales</span>
+            </div>
+          </div>
+          <div class="portfolio-copy">
+            <h3>Sesiones más solicitadas</h3>
+            <p>Una sección estilo catálogo que organiza tus servicios principales de manera clara y visual, manteniendo el look editorial del Canva.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portafolio">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Portafolio</div>
+          <h2>Creación de contenido</h2>
+          <p class="section-note">Aquí dejé bien claro algo importante: <strong>muchas de las miniaturas representan videos / reels</strong>. O sea, aunque se vean como “fotos”, varias piezas son en realidad clips de video o capturas de reels.</p>
+        </div>
+        <div class="portfolio-grid">
+          <article class="portfolio-card">
+            <div class="portfolio-media">
+              <img src="assets/screens/content1.png" alt="Galería de creación de contenido para negocios y espacios.">
+              <div class="portfolio-badges">
+                <span class="type-badge">Foto</span>
+                <span class="type-badge video">Video / Reel</span>
+              </div>
+            </div>
+            <div class="portfolio-copy">
+              <h3>Contenido para espacios y marcas</h3>
+              <p>Ideal para mostrar restaurantes, locales, interiores, fachadas, experiencias y piezas promocionales con mezcla de foto y video.</p>
+            </div>
+          </article>
+          <article class="portfolio-card">
+            <div class="portfolio-media">
+              <img src="assets/screens/content2.png" alt="Galería de creación de contenido con personas, comida y negocios.">
+              <div class="portfolio-badges">
+                <span class="type-badge">Foto</span>
+                <span class="type-badge video">Video / Reel</span>
+              </div>
+            </div>
+            <div class="portfolio-copy">
+              <h3>Contenido lifestyle y social</h3>
+              <p>Perfecto para piezas dinámicas pensadas para Instagram o TikTok, donde una sola miniatura puede representar un video completo.</p>
+            </div>
+          </article>
+        </div>
+        <div class="media-banner">
+          <strong>Importante:</strong> para evitar confusión, la web recalca que varias “fotos” de muestra son en realidad <strong>videos, reels o capturas de contenido audiovisual</strong>.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="paquetes">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Paquetes</div>
+          <h2>Combos</h2>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h3>Mini Session</h3>
+            <p class="price">$DM</p>
+            <ul>
+              <li>30 minutos</li>
+              <li>8–10 fotos editadas</li>
+              <li>1 persona</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Portrait Session</h3>
+            <p class="price">$DM</p>
+            <ul>
+              <li>1 hora</li>
+              <li>15–20 fotos editadas</li>
+              <li>1–2 outfits</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Couples Session</h3>
+            <p class="price">$DM</p>
+            <ul>
+              <li>1 hora</li>
+              <li>20–25 fotos editadas</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Family Session</h3>
+            <p class="price">$DM</p>
+            <ul>
+              <li>1 hora</li>
+              <li>25–30 fotos editadas</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Video Profesional</h3>
+            <p class="price">$DM</p>
+            <ul>
+              <li>1 hora</li>
+              <li>Video editado</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Eventos</h3>
+            <p class="price">DM</p>
+            <ul>
+              <li>2 horas</li>
+              <li>40 fotos editadas</li>
+              <li>2 videos cortos</li>
+            </ul>
+          </article>
+        </div>
+        <div class="dual-preview" aria-label="Vista previa visual de las secciones de combos y agradecimiento">
+          <figure>
+            <img src="assets/screens/combos.png" alt="Vista inspiracional del diseño original de combos.">
+            <div class="mini-pills"><span class="media-pill">Misma estética</span></div>
+            <figcaption>Sección de combos con estructura limpia, elegante y fácil de escanear.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/screens/thanks.png" alt="Vista final del diseño con mensaje de agradecimiento y reserva.">
+            <div class="mini-pills"><span class="media-pill">Cierre / CTA</span></div>
+            <figcaption>Cierre con agradecimiento, llamado a reservar y presencia visual de Instagram.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="negocios">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Contenido para marcas</div>
+          <h2>Creación de contenidos para negocios</h2>
+          <p class="section-note">Mantuve tu idea de paquetes para negocios con un estilo editorial y muy ordenado, ideal para una marca personal que también trabaja con comercios.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h3>Mini Content</h3>
+            <p class="price">$DM</p>
+            <ul>
+              <li>1 hora</li>
+              <li>2 videos cortos</li>
+              <li>4 fotos editadas</li>
+              <li>Material para reels / TikTok</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Business Content</h3>
+            <p class="price">$DM</p>
+            <ul>
+              <li>2 horas</li>
+              <li>5 videos / 15 fotos editadas</li>
+              <li>Contenido pensado para Instagram / TikTok</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Monthly Content</h3>
+            <p class="price">Desde $DM</p>
+            <ul>
+              <li>1–2 sesiones al mes</li>
+              <li>Contenido para varias semanas</li>
+              <li>Precio personalizado según lo que necesite el negocio</li>
+            </ul>
+          </article>
+        </div>
+        <div class="dual-preview" aria-label="Vista previa de contenido para negocios">
+          <figure>
+            <img src="assets/screens/business.png" alt="Vista inspiracional de la sección de creación de contenidos para negocios.">
+            <div class="mini-pills"><span class="media-pill">Negocios</span><span class="media-pill">IG / TikTok</span></div>
+            <figcaption>El formato mantiene el aire editorial del diseño y comunica de forma clara las opciones para marcas.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/screens/hero.png" alt="Vista de la portada del diseño Yuli Reyes booking site.">
+            <div class="mini-pills"><span class="media-pill">Portada</span></div>
+            <figcaption>Portada de entrada con tipografía serif fina, mucho espacio en blanco y una identidad visual limpia.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container surface thankyou">
+        <div>
+          <img src="assets/screens/thanks.png" alt="Vista previa del cierre del diseño con tarjetas de estilo Instagram.">
+        </div>
+        <div>
+          <div class="kicker">Reserva y contacto</div>
+          <h2>¡Gracias por reservar!</h2>
+          <p>Etiquétanos para aparecer en nuestra página y escríbenos por DM para coordinar tu sesión, colaboración o creación de contenido para negocio.</p>
+          <div class="contact-list">
+            <a class="btn dark" href="#">Reservar por DM</a>
+            <a class="btn light" href="#">Instagram: @yulivisual</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <span>Yuli Visuals · Photos, Videos &amp; Colaboraciones</span>
+      <span>Diseño web inspirado en tu Canva original</span>
+    </div>
+  </footer>
+</body>
+</html>
